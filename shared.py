@@ -92,7 +92,7 @@ chat_history = []
 def home():
     # Nếu không có template, trả text đơn giản
     try:
-        return render_template("index.html")
+        return render_template("vanchan.html")
     except Exception:
         return "API Service is running. Use /chat và /analyze endpoints."
 
