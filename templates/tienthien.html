@@ -322,12 +322,9 @@ z-index: 1;">
 
 <script>
 const questions = [
-    "Ngày sinh của bạn? (VD: 1990-05-15)",
-    "Tính cách của bạn? (VD: Hiền lành, Mạnh mẽ, ...)",
-    "Bạn có hay lạnh không? (Có/Không)",
-    "Bạn có hay nóng trong không? (Có/Không)",
-    "Bạn có hay mệt không? (Có/Không)",
-    "Bạn mong muốn tư vấn gì? (VD: Chế độ ăn, Tập luyện, ...)"
+    "Ngày sinh của bạn? (VD: 2006-08-21)",
+    "Giờ sinh của bạn? (VD: 14:30 hoặc giờ Tý, Sửu...)",
+    "Giới tính của bạn? (Nam/Nữ)"
 ];
 
 let qIndex = 0;
@@ -372,12 +369,9 @@ function submit() {
 
 function sendAnalysis() {
     const data = {
-        dob: answers[0] || "",
-        personality: answers[1] || "",
-        cold: answers[2] || "",
-        hot: answers[3] || "",
-        tired: answers[4] || "",
-        request: answers[5] || ""
+    dob: answers[0] || "",
+    birth_time: answers[1] || "",
+    gender: answers[2] || ""
     };
 
     console.log("Sending data:", data);

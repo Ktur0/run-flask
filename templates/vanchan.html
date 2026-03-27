@@ -369,16 +369,31 @@ const modeGuidedBtn = document.getElementById("mode-guided");
 
 let mode = "user";
 const guidedQuestions = [
-    "Hiện tại bạn khó chịu nhất ở đâu? (đau, mệt, mất ngủ, tiêu hóa…)",
-    "Bạn thường sợ lạnh hay sợ nóng?",
-    "Có khát nước, miệng khô, nóng trong không?",
-    "Ăn uống có ngon không? Có đầy bụng, khó tiêu không?",
-    "Bạn đi tiêu lỏng, bình thường hay táo bón?",
-    "Nước tiểu trong hay vàng đậm, nhiều hay ít?",
-    "Bạn ngủ có ngon không, có hay tỉnh giấc không?",
-    "Bạn có hay mệt, thiếu sức không?",
-    "Gần đây bạn căng thẳng, lo âu hay dễ cáu gắt không?",
-    "Có đổ mồ hôi bất thường, lạnh tay chân, đau lưng, ù tai không?"
+    "Gần đây bạn cảm thấy cơ thể như thế nào? (đau ở đâu, hay tái phát hay không,...)",
+    "Gần đây có gặp căng thẳng, áp lực công việc?",
+    "Có thay đổi thói quen sinh hoạt: thức khuya, ăn uống thất thường, thói quen ngủ máy lạnh… không?",
+    "Môi trường sống như thế nào? (hanh khô, ẩm ướt, lạnh,...hoặc công việc thường xuyên tiếp xúc với nắng/gió…)",
+    "Có nghĩ đến nguyên nhân nào dẫn đến triệu chứng hiện tại không? (ăn đồ sống lạnh trước đó, đi nắng, dầm mưa…)",
+    "Khi nào đau tăng lên và khi nào thì giảm đi?",
+    "Có tăng khi trời lạnh hoặc giảm khi chườm ấm/sưởi ấm không?",
+    "Nếu có khát thì có muốn uống nước hay không và khi uống thì có hết khát không?",
+    "Đau âm ỉ hay dữ dội?",
+    "Khi ấn thì giảm đau hay đau hơn?",
+    "Đau cố định hay di chuyển?",
+    "Có sợ lạnh không? (thích đắp chăn, thích uống nước ấm, tay chân lạnh)",
+    "Có sợ nóng không? (bứt rứt, thích uống nước đá, khát khô)",
+    "Có cảm giác vừa nóng vừa lạnh không?",
+    "Có nóng sốt hoặc sốt cao không?",
+    "Có cảm giác lạnh/nóng/mát ở bất kỳ vị trí nào trên cơ thể không? (ngực, bụng, tay chân)",
+    "Cảm thấy tinh thần gần đây như thế nào? (mệt mỏi, ủ rũ, trầm cảm, uể oải, khó chịu hay bứt rứt,...)",
+    "Cảm thấy giọng nói như thế nào? (giọng nhỏ, yếu, lười nói, nói to, thô, nói nhiều)",
+    "Hơi thở ra sao? (mạnh, yếu, thô ráp)",
+    "Ra mồ hôi cả khi không vận động nhiều/mạnh?",
+    "Chỉ ra mồ hôi khi ngủ, hết khi thức dậy?",
+    "Về chất tiết (nước mũi, nước tiểu, phân) màu sắc như thế nào, lượng nhiều hay ít hơn bình thường, tính chất như thế nào (nhầy nhớt, lỏng, có lẫn máu,...), có khó khăn khi đại tiện không?",
+    "Màu sắc lưỡi và vị trí của màu sắc đỏ?",
+    "Rêu lưỡi khô hay ướt và có màu sắc gì?",
+    "Có dấu hiệu bất thường nào trên bề mặt lưỡi không? (đường nứt dọc, các đường nứt ngang,...)"
 ];
 let questionIndex = 0;
 let onboarding = false;
@@ -433,9 +448,11 @@ function askNextQuestion() {
     } else {
         onboarding = false;
         input.placeholder = "Bạn có thể nhập câu hỏi phụ hoặc thử lại...";
-        const summary = guidedQuestions.map((q, idx) => `(Câu ${idx + 1}) ${q}\nTrả lời: ${onboardingAnswers[idx] || "(không trả lời)"}`).join("\n\n");
-        addMessage("✓ Đã thu thập đủ 10 câu hỏi. Đang gửi phân tích chi tiết...", "ai");
-        sendToServer(`Tóm tắt cuộc phỏng vấn (10 câu):\n\n${summary}`);
+        const summary = guidedQuestions.map((q, idx) => 
+            `${q}\n→ ${onboardingAnswers[idx] || "(không trả lời)"}`
+        ).join("\n\n");
+
+        sendToServer(`Dữ liệu vấn chẩn:\n\n${summary}`);
     }
 }
 

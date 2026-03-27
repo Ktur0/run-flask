@@ -17,8 +17,9 @@ def vanchan_chat(user_msg, chat_history):
 Bạn là chuyên gia Đông y.
 
 YÊU CẦU:
-- Trả lời tối đa 3-4 câu
+- Trả lời tối đa 5-7 câu
 - Câu ngắn, rõ, không lan man
+- Phân tích dựa trên thông tin người dùng trả lời
 
 FORMAT HTML:
 Thể trạng:...
@@ -41,47 +42,41 @@ Không viết ngoài format.
 
 # Hàm cho tienthien: Phân tích thể trạng
 def tienthien_analyze(data):
-    cold = str(data.get("cold", "")).lower()
-    hot = str(data.get("hot", "")).lower()
-    tired = str(data.get("tired", "")).lower()
-
-    result = []
-    if "có" in cold or "yes" in cold or "y" in cold:
-        result.append("Dương hư (thiên về lạnh)")
-    if "có" in hot or "yes" in hot or "y" in hot:
-        result.append("Nhiệt")
-    if "có" in tired or "yes" in tired or "y" in tired or "mệt" in tired:
-        result.append("Khí hư")
-    if not result:
-        result.append("Cân bằng")
-
-    constitution = ", ".join(result)
+    dob = data.get("dob", "")
+    birth_time = data.get("birth_time", "")
+    gender = data.get("gender", "")
 
     prompt = f"""Bạn là chuyên gia Đông y.
+
 Đây KHÔNG phải chuẩn đoán bệnh.
 
 Thông tin:
-- Thể chất: {constitution}
-- Ngày sinh: {data.get('dob')}
-- Tính cách: {data.get('personality')}
-- Hay lạnh: {data.get('cold')}
-- Hay nóng: {data.get('hot')}
-- Hay mệt: {data.get('tired')}
-- Mong muốn: {data.get('request')}
+- Ngày sinh: {dob}
+- Giờ sinh: {birth_time}
+- Giới tính: {gender}
 
-Hãy trả về lời khuyên ngắn gọn:
-1. Tổng quan thể chất
-2. Lời khuyên ăn uống
-3. Lối sống hợp lý
+Hãy phân tích NGẮN GỌN:
 
-Viết dễ hiểu, không quá dài."""
+1. Tổng quan thể chất (âm/dương, hàn/nhiệt)
+2. Điểm mạnh cơ thể
+3. Điểm cần chú ý
+4. Gợi ý ăn uống & sinh hoạt
+
+Viết dễ hiểu, không dài dòng."""
 
     try:
         response = model.generate_content(prompt)
         clean_text = response.text.replace("**", "").replace("##", "").strip()
-        return {"constitution": constitution, "advice": clean_text}
+        return {
+            "constitution": "Phân tích tiên thiên",
+            "advice": clean_text
+        }
     except Exception as e:
-        return {"error": str(e), "constitution": "Lỗi phân tích", "advice": f"Chi tiết lỗi: {str(e)}"}
+        return {
+            "error": str(e),
+            "constitution": "Lỗi",
+            "advice": f"Chi tiết lỗi: {str(e)}"
+        }
 
 
 app = Flask(__name__)
