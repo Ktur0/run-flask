@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Đông y AI - Phân tích</title>
+    <style>
+        :root {
+            --accent: #33a856;
+            --accent-2: #4ec16f;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #ebfced 0%, #c8e7ce 45%, #a5d8ae 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
+
+        .container {
+            width: min(100%, 500px);
+            background: linear-gradient(145deg, #c4e7cc, #c0dcc6);
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.3);
+            padding: 30px;
+            border: 1px solid rgba(71, 85, 105, 0.35);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--accent);
+        }
+
+        .header p {
+            margin: 8px 0 0;
+            font-size: 14px;
+            color: #4b6f5b;
+        }
+
+        .question-box {
+            background: #ffffff;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #d4e7d6;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        .question-text {
+            font-size: 16px;
+            color: #0f3f23;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .counter {
+            font-size: 12px;
+            color: #99978c;
+            margin-bottom: 4px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 12px 14px;
+            border: 1px solid #99c5a1;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #0f3f23;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .input-group input::placeholder {
+            color: #99978c;
+        }
+
+        .input-group button {
+            padding: 12px 18px;
+            background: linear-gradient(100deg, var(--accent-2), var(--accent));
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .input-group button:hover {
+            transform: translateY(-1px);
+        }
+
+        .result {
+            background: linear-gradient(135deg, #ffffff 0%, #f5fef6 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 16px;
+            border: 2px solid #33a856;
+            display: none;
+            box-shadow: 0 4px 12px rgba(51, 168, 86, 0.15);
+        }
+
+        .result.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-title {
+            font-size: 16px;
+            color: #33a856;
+            font-weight: 900;
+            margin: 0 0 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #33a856;
+            padding-bottom: 10px;
+        }
+
+        .result-content {
+            font-size: 14px;
+            color: #0f3f23;
+            line-height: 1.8;
+            white-space: pre-line;
+            word-wrap: break-word;
+            margin: 0;
+        }
+
+        .section-header {
+            font-weight: 700;
+            color: #33a856;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .section-icon {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Tiên thiên</h1>
+        <p>Trả lời các câu hỏi để nhận tư vấn</p>
+    </div>
+
+    <div class="counter" id="counter"></div>
+    <div class="question-box">
+        <p class="question-text" id="question"></p>
+    </div>
+
+    <div class="input-group">
+        <input id="answer" type="text" placeholder="Nhập câu trả lời..." />
+        <button onclick="submit()">Gửi</button>
+    </div>
+
+    <div class="result" id="result">
+        <p class="result-title" id="result-title"></p>
+        <p class="result-content" id="result-content"></p>
+    </div>
+
+</div>
+
+<script>
+const questions = [
+    "Ngày sinh của bạn? (VD: 1990-05-15)",
+    "Tính cách của bạn? (VD: Hiền lành, Mạnh mẽ, ...)",
+    "Bạn có hay lạnh không? (Có/Không)",
+    "Bạn có hay nóng trong không? (Có/Không)",
+    "Bạn có hay mệt không? (Có/Không)",
+    "Bạn mong muốn tư vấn gì? (VD: Chế độ ăn, Tập luyện, ...)"
+];
+
+let qIndex = 0;
+let answers = [];
+
+const input = document.getElementById("answer");
+const questionEl = document.getElementById("question");
+const counterEl = document.getElementById("counter");
+const resultDiv = document.getElementById("result");
+
+input.addEventListener("keypress", e => {
+    if (e.key === "Enter") submit();
+});
+
+window.addEventListener("load", () => {
+    showQuestion();
+});
+
+function showQuestion() {
+    if (qIndex < questions.length) {
+        counterEl.textContent = `Câu ${qIndex + 1}/${questions.length}`;
+        questionEl.textContent = questions[qIndex];
+        input.value = "";
+        input.focus();
+        resultDiv.classList.remove("show");
+    }
+}
+
+function submit() {
+    const answer = input.value.trim();
+    if (!answer) return;
+
+    answers.push(answer);
+    qIndex++;
+
+    if (qIndex >= questions.length) {
+        sendAnalysis();
+    } else {
+        showQuestion();
+    }
+}
+
+function sendAnalysis() {
+    const data = {
+        dob: answers[0] || "",
+        personality: answers[1] || "",
+        cold: answers[2] || "",
+        hot: answers[3] || "",
+        tired: answers[4] || "",
+        request: answers[5] || ""
+    };
+
+    console.log("Sending data:", data);
+
+    input.style.display = "none";
+    document.querySelector(".input-group button").style.display = "none";
+    
+    questionEl.textContent = "Đang phân tích...";
+
+    fetch("/analyze", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    })
+    .then(res => {
+        console.log("Response status:", res.status);
+        return res.json().then(data => ({
+            status: res.status,
+            ok: res.ok,
+            data: data
+        }));
+    })
+    .then(res => {
+        console.log("Response:", res);
+        if (!res.ok) {
+            throw new Error(res.data.error || `HTTP ${res.status}`);
+        }
+        questionEl.textContent = "✓ Phân tích xong!";
+        
+        const constitution = res.data.constitution || "Không xác định";
+        const advice = res.data.advice || "Không có kết quả";
+        
+        // Format kết quả đẹp
+        document.getElementById("result-title").innerHTML = `🧠 <strong>THỂ CHẤT: ${constitution.toUpperCase()}</strong>`;
+        
+        // Format advice với HTML
+        const formattedAdvice = formatAdvice(advice);
+        document.getElementById("result-content").innerHTML = formattedAdvice;
+        
+        resultDiv.classList.add("show");
+    })
+    .catch(err => {
+        console.error("Error:", err);
+        questionEl.textContent = "❌ Lỗi phân tích";
+        document.getElementById("result-title").textContent = "Lỗi";
+        document.getElementById("result-content").textContent = "Chi tiết: " + err.message;
+        resultDiv.classList.add("show");
+    });
+}
+
+function formatAdvice(text) {
+    // Loại bỏ Markdown cơ bản trước khi hiển thị
+    text = text
+        .replace(/\*\*/g, '')
+        .replace(/##+/g, '')
+        .replace(/^\s*\*\s?/gm, '• ')
+        .replace(/^\s*-\s?/gm, '• ')
+        .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '$1');
+
+    return text
+        .split('\n')
+        .map(line => {
+            line = line.trim();
+            if (!line) return '<br>';
+
+            // Tiêu đề dạng #, ## sau khi đã xóa ## chuyển thành dòng rõ ràng
+            if (/^\s*\d+\./.test(line)) {
+                return `<div class="section-header"><span class="section-icon">📌</span> <strong>${line}</strong></div>`;
+            }
+
+            // Dòng bullet point
+            if (/^•\s+/.test(line)) {
+                return `<p style="color:#0f3f23">• ${line.replace(/^•\s+/, '')}</p>`;
+            }
+
+            // Dòng chứa tiêu đề nội dung
+            if (line.includes(':')) {
+                const parts = line.split(':');
+                const title = parts.shift().trim();
+                const content = parts.join(':').trim();
+                if (title && content) {
+                    return `<p><strong style="color:#33a856;font-size:15px">${title}:</strong> ${content}</p>`;
+                }
+            }
+
+            // Thêm icon cho các dòng có từ khóa
+            const lower = line.toLowerCase();
+            if (lower.includes('lạnh') || lower.includes('nóng') || lower.includes('mệt')) {
+                return `<p style="color:#0f3f23">🔹 <strong>${line}</strong></p>`;
+            }
+            if (lower.includes('khuyên') || lower.includes('nên')) {
+                return `<p style="color:#0f3f23">✅ ${line}</p>`;
+            }
+            if (lower.includes('tránh') || lower.includes('không')) {
+                return `<p style="color:#0f3f23">⚠️ ${line}</p>`;
+            }
+
+            return `<p style="color:#0f3f23">${line}</p>`;
+        })
+        .join('');
+}
+</script>
+
+</body>
+</html>
