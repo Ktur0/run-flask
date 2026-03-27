@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Đông y AI - Phân tích</title>
+    <link rel="stylesheet" href="style van chan.css">
     <style>
         :root {
             --accent: #33a856;
@@ -16,9 +17,8 @@
             min-height: 100vh;
             font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
             background: linear-gradient(180deg, #ebfced 0%, #c8e7ce 45%, #a5d8ae 100%);
-            display: flex;
+            display: grid;
             justify-content: center;
-            align-items: center;
             padding: 16px;
         }
 
@@ -161,7 +161,34 @@
     </style>
 </head>
 <body>
-
+    <div class="background-black"></div>
+    <div class="background-img"></div>
+    <header>
+        <div class="title"> 
+            <img src="imagine/logo.png" style="
+            height: 58px;">
+            <div class="title_name" style="display: inline-block;" href="#">
+                <a class="thuc_lieu_hanh" href="#">THỰC LIỆU HÀNH</a>
+                <br>
+                <a class="di_thuc" href="#">Dĩ thực vi dược</a>
+            </div>
+        </div>
+        <div class="navs">
+                <a class="nav_butt" href="../Homepage.html">Trang chủ</a>
+                <a class="nav_butt" href="#">Tiên thiên</a>
+                <a class="nav_butt" href="vanchan.html">Vấn - chẩn</a>
+                <a class="nav_butt" href="../thuc_phuong.html">Thực phương</a>
+        </div>
+    </header>
+<div class="main-container" style="display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+max-width: 1200px;           /* giới hạn chiều rộng tối đa nếu muốn */
+margin: 0 auto;              /* căn giữa */
+padding: 0px 0px;          /* khoảng cách với viền màn hình */
+position: relative;
+z-index: 1;">
 <div class="container">
 
     <div class="header">
@@ -183,7 +210,7 @@
         <p class="result-title" id="result-title"></p>
         <p class="result-content" id="result-content"></p>
     </div>
-
+</div>
 </div>
 
 <script>
