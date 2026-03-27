@@ -84,7 +84,7 @@
         aspect-ratio: 16/7;
         top:0;
         left:0;
-        background: url(imagine/thpt_thd_3.jpg);
+        background: url("{{ url_for('static', filename='images/thpt_thd_3.jpg') }}");
         background-size: cover;
         z-index: -9999;
         margin: 0;
@@ -272,7 +272,7 @@
     <div class="background-img"></div>
     <header>
         <div class="title"> 
-            <img src="imagine/logo.png" style="
+            <img src="{{ url_for('static', filename='images/logo.png') }}" style="
             height: 58px;">
             <div class="title_name" style="display: inline-block;" href="#">
                 <a class="thuc_lieu_hanh" href="#">THỰC LIỆU HÀNH</a>
