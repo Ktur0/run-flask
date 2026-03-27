@@ -90,11 +90,22 @@ chat_history = []
 
 @app.route("/")
 def home():
-    # Nếu không có template, trả text đơn giản
-    try:
-        return render_template("vanchan.html")
-    except Exception:
-        return "API Service is running. Use /chat và /analyze endpoints."
+    return """
+    <h2>AI Đông y</h2>
+    <p>Chọn chức năng:</p>
+    <ul>
+        <li><a href="/vanchan">Vấn chẩn (chat AI)</a></li>
+        <li><a href="/tienthien">Phân tích thể trạng</a></li>
+    </ul>
+    """
+
+@app.route("/vanchan")
+def vanchan_ui():
+    return render_template("vanchan.html")
+
+@app.route("/tienthien")
+def tienthien_ui():
+    return render_template("tienthien.html")
 
 
 @app.route("/chat", methods=["POST"])
