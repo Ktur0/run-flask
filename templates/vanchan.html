@@ -369,31 +369,22 @@ const modeGuidedBtn = document.getElementById("mode-guided");
 
 let mode = "user";
 const guidedQuestions = [
-    "Gần đây bạn cảm thấy cơ thể như thế nào? (đau ở đâu, hay tái phát hay không,...)",
-    "Gần đây có gặp căng thẳng, áp lực công việc?",
-    "Có thay đổi thói quen sinh hoạt: thức khuya, ăn uống thất thường, thói quen ngủ máy lạnh… không?",
-    "Môi trường sống như thế nào? (hanh khô, ẩm ướt, lạnh,...hoặc công việc thường xuyên tiếp xúc với nắng/gió…)",
-    "Có nghĩ đến nguyên nhân nào dẫn đến triệu chứng hiện tại không? (ăn đồ sống lạnh trước đó, đi nắng, dầm mưa…)",
-    "Khi nào đau tăng lên và khi nào thì giảm đi?",
-    "Có tăng khi trời lạnh hoặc giảm khi chườm ấm/sưởi ấm không?",
-    "Nếu có khát thì có muốn uống nước hay không và khi uống thì có hết khát không?",
-    "Đau âm ỉ hay dữ dội?",
-    "Khi ấn thì giảm đau hay đau hơn?",
-    "Đau cố định hay di chuyển?",
-    "Có sợ lạnh không? (thích đắp chăn, thích uống nước ấm, tay chân lạnh)",
-    "Có sợ nóng không? (bứt rứt, thích uống nước đá, khát khô)",
-    "Có cảm giác vừa nóng vừa lạnh không?",
-    "Có nóng sốt hoặc sốt cao không?",
-    "Có cảm giác lạnh/nóng/mát ở bất kỳ vị trí nào trên cơ thể không? (ngực, bụng, tay chân)",
-    "Cảm thấy tinh thần gần đây như thế nào? (mệt mỏi, ủ rũ, trầm cảm, uể oải, khó chịu hay bứt rứt,...)",
-    "Cảm thấy giọng nói như thế nào? (giọng nhỏ, yếu, lười nói, nói to, thô, nói nhiều)",
-    "Hơi thở ra sao? (mạnh, yếu, thô ráp)",
-    "Ra mồ hôi cả khi không vận động nhiều/mạnh?",
-    "Chỉ ra mồ hôi khi ngủ, hết khi thức dậy?",
-    "Về chất tiết (nước mũi, nước tiểu, phân) màu sắc như thế nào, lượng nhiều hay ít hơn bình thường, tính chất như thế nào (nhầy nhớt, lỏng, có lẫn máu,...), có khó khăn khi đại tiện không?",
-    "Màu sắc lưỡi và vị trí của màu sắc đỏ?",
-    "Rêu lưỡi khô hay ướt và có màu sắc gì?",
-    "Có dấu hiệu bất thường nào trên bề mặt lưỡi không? (đường nứt dọc, các đường nứt ngang,...)"
+    "Tình trạng này của bạn đã kéo dài bao lâu rồi? Mới bị gần đây (dưới 1 tuần) hay đã bị từ lâu/tái phát nhiều lần?",
+    "Bạn có nhận thấy sự thay đổi nào về môi trường hay thói quen trước khi phát bệnh không? Đi nắng, dầm mưa, ngủ máy lạnh quá lạnh, thức khuya, áp lực công việc, hay vừa ăn đồ sống lạnh/đồ quá cay nóng?",
+    "Bạn có nghĩ đến một nguyên nhân cụ thể nào dẫn đến tình trạng hiện tại không? (Ví dụ: Do thời tiết thay đổi, do ăn uống, hay do căng thẳng cảm xúc...)",
+    "Bạn có đang gặp các dấu hiệu nào khác đi kèm không?",
+    "Nếu có cảm giác đau (bụng, đầu, mình mẩy...), bạn bị đau ở vị trí nào và cảm giác đau ra sao?",
+    "Cơn đau của bạn thay đổi như thế nào theo thời gian và vận động?",
+    "Cảm giác nhiệt độ cơ thể bạn trong phần lớn thời gian gần đây như thế nào?",
+    "Bạn có cảm thấy nóng hoặc lạnh bất thường ở một vùng cụ thể nào không? (Ví dụ: Nóng ở lòng bàn tay chân, hay lạnh vùng bụng, lạnh dọc sống lưng...)",
+    "Thói quen uống nước của bạn hiện tại như thế nào? Không muốn uống nước, hay rất khát và muốn uống nước lạnh? Uống xong có cảm thấy hết khát không?",
+    "Tình trạng tiết mồ hôi của bạn gần đây như thế nào?",
+    "Bạn cảm thấy giọng nói và hơi thở của mình hiện tại như thế nào?",
+    "Trạng thái tinh thần và năng lượng của bạn gần đây ra sao?",
+    "Hãy quan sát nước tiểu và phân của bạn so với bình thường về màu sắc, tính chất và lượng?",
+    "Bạn có gặp khó khăn trong quá trình đi đại tiện hoặc tiểu tiện không?",
+    "Đặc điểm màu sắc, tính chất và lượng của các chất tiết khác? (nếu có như đờm, nước mũi...)",
+    "Hãy quan sát lưỡi của mình vào buổi sáng sáng sớm sau khi vệ sinh răng miệng và trước khi ăn: màu sắc, lớp rêu lưỡi, các đường nứt lưỡi…"
 ];
 let questionIndex = 0;
 let onboarding = false;
