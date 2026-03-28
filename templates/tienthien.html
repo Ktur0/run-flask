@@ -54,28 +54,28 @@
 
         /*Navigations*/
         header .navs{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 5px 50px;
-            gap: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            min-height: 44px;
-            margin-left:6%;
-            }
-            
-            /* Trang chủ */
-            header .nav_butt{
-            font-family: 'DVN - Cinzel Decorative';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 13px;
-            color: #FFFFFF;
-            text-decoration: none;
-            padding: 0px 0px;   
-            line-height: 1;
-            }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 50px;
+    gap: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    min-height: 44px;
+    margin-left:6%;
+    }
+    
+    /* Trang chủ */
+    header .nav_butt{
+    font-family: 'DVN - Cinzel Decorative';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 0px 0px;   
+    line-height: 1;
+    }
 
         /* background img */
         body .background-img{
@@ -84,7 +84,7 @@
         aspect-ratio: 16/7;
         top:0;
         left:0;
-        background: url("{{ url_for('static', filename='images/thpt_thd_3.jpg') }}");
+        background: url(../imagine/thpt_thd_3.jpg);
         background-size: cover;
         z-index: -9999;
         margin: 0;
@@ -222,6 +222,11 @@
             border: 2px solid #33a856;
             display: none;
             box-shadow: 0 4px 12px rgba(51, 168, 86, 0.15);
+
+            /* 👇 QUAN TRỌNG */
+            max-height: 300px;       /* giới hạn chiều cao */
+            overflow-y: auto;        /* bật thanh cuộn */
+            scroll-behavior: smooth;
         }
 
         .result.show {
@@ -272,7 +277,7 @@
     <div class="background-img"></div>
     <header>
         <div class="title"> 
-            <img src="{{ url_for('static', filename='images/logo.png') }}" style="
+            <img src="../imagine/logo.png" style="
             height: 58px;">
             <div class="title_name" style="display: inline-block;" href="#">
                 <a class="thuc_lieu_hanh" href="#">THỰC LIỆU HÀNH</a>
@@ -281,10 +286,10 @@
             </div>
         </div>
         <div class="navs">
-                <a class="nav_butt" href="https://thuclieuhanh.pages.dev/">Trang chủ</a>
+                <a class="nav_butt" href="../Homepage.html">Trang chủ</a>
                 <a class="nav_butt" href="https://run-flask.onrender.com/tienthien">Tiên thiên</a>
                 <a class="nav_butt" href="https://run-flask.onrender.com/vanchan">Vấn - chẩn</a>
-                <a class="nav_butt" href="https://thuclieuhanh.pages.dev/thucphuong">Thực phương</a>
+                <a class="nav_butt" href="../thucphuong.html">Thực phương</a>
                 <a class="nav_butt" href="#">Sức khỏe & Đời sống</a>
         </div>
     </header>
@@ -323,12 +328,9 @@ z-index: 1;">
 
 <script>
 const questions = [
-    "Ngày sinh của bạn? (VD: 1990-05-15)",
-    "Tính cách của bạn? (VD: Hiền lành, Mạnh mẽ, ...)",
-    "Bạn có hay lạnh không? (Có/Không)",
-    "Bạn có hay nóng trong không? (Có/Không)",
-    "Bạn có hay mệt không? (Có/Không)",
-    "Bạn mong muốn tư vấn gì? (VD: Chế độ ăn, Tập luyện, ...)"
+    "Ngày sinh của bạn? (VD: 2006-08-21)",
+    "Giờ sinh của bạn? (VD: 14:30 hoặc giờ Tý, Sửu...)",
+    "Giới tính của bạn? (Nam/Nữ)"
 ];
 
 let qIndex = 0;
@@ -373,12 +375,9 @@ function submit() {
 
 function sendAnalysis() {
     const data = {
-        dob: answers[0] || "",
-        personality: answers[1] || "",
-        cold: answers[2] || "",
-        hot: answers[3] || "",
-        tired: answers[4] || "",
-        request: answers[5] || ""
+    dob: answers[0] || "",
+    birth_time: answers[1] || "",
+    gender: answers[2] || ""
     };
 
     console.log("Sending data:", data);

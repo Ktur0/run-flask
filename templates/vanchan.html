@@ -371,23 +371,16 @@ const modeGuidedBtn = document.getElementById("mode-guided");
 
 let mode = "user";
 const guidedQuestions = [
-    "Vấn đề sức khỏe bạn đang mắc phải là gì?",
-    "Tình trạng này của bạn đã kéo dài bao lâu rồi? Mới bị gần đây (dưới 1 tuần) hay đã bị từ lâu/tái phát nhiều lần?",
-    "Bạn có nhận thấy sự thay đổi nào về môi trường hay thói quen trước khi phát bệnh không? Đi nắng, dầm mưa, ngủ máy lạnh quá lạnh, thức khuya, áp lực công việc, hay vừa ăn đồ sống lạnh/đồ quá cay nóng?",
-    "Bạn có nghĩ đến một nguyên nhân cụ thể nào dẫn đến tình trạng hiện tại không? (Ví dụ: Do thời tiết thay đổi, do ăn uống, hay do căng thẳng cảm xúc...)",
-    "Bạn có đang gặp các dấu hiệu nào khác đi kèm không?",
-    "Nếu có cảm giác đau (bụng, đầu, mình mẩy...), bạn bị đau ở vị trí nào và cảm giác đau ra sao?",
-    "Cơn đau của bạn thay đổi như thế nào theo thời gian và vận động?",
-    "Cảm giác nhiệt độ cơ thể bạn trong phần lớn thời gian gần đây như thế nào?",
-    "Bạn có cảm thấy nóng hoặc lạnh bất thường ở một vùng cụ thể nào không? (Ví dụ: Nóng ở lòng bàn tay chân, hay lạnh vùng bụng, lạnh dọc sống lưng...)",
-    "Thói quen uống nước của bạn hiện tại như thế nào? Không muốn uống nước, hay rất khát và muốn uống nước lạnh? Uống xong có cảm thấy hết khát không?",
-    "Tình trạng tiết mồ hôi của bạn gần đây như thế nào?",
-    "Bạn cảm thấy giọng nói và hơi thở của mình hiện tại như thế nào?",
-    "Trạng thái tinh thần và năng lượng của bạn gần đây ra sao?",
-    "Hãy quan sát nước tiểu và phân của bạn so với bình thường về màu sắc, tính chất và lượng.",
-    "Bạn có gặp khó khăn trong quá trình đi đại tiện hoặc tiểu tiện không?",
-    "Đặc điểm màu sắc, tính chất và lượng của các chất tiết khác? (nếu có như đờm, nước mũi...)",
-    "Hãy quan sát lưỡi của mình vào buổi sáng sáng sớm sau khi vệ sinh răng miệng và trước khi ăn: màu sắc, lớp rêu lưỡi, các đường nứt lưỡi…"
+    "Hiện tại bạn khó chịu nhất ở đâu? (đau, mệt, mất ngủ, tiêu hóa…)",
+    "Bạn thường sợ lạnh hay sợ nóng?",
+    "Có khát nước, miệng khô, nóng trong không?",
+    "Ăn uống có ngon không? Có đầy bụng, khó tiêu không?",
+    "Bạn đi tiêu lỏng, bình thường hay táo bón?",
+    "Nước tiểu trong hay vàng đậm, nhiều hay ít?",
+    "Bạn ngủ có ngon không, có hay tỉnh giấc không?",
+    "Bạn có hay mệt, thiếu sức không?",
+    "Gần đây bạn căng thẳng, lo âu hay dễ cáu gắt không?",
+    "Có đổ mồ hôi bất thường, lạnh tay chân, đau lưng, ù tai không?"
 ];
 let questionIndex = 0;
 let onboarding = false;
