@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>AI Đông y</title>
+    <title>Thực liệu hành</title>
     <link rel="stylesheet" href="style van chan.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap');
@@ -54,28 +55,28 @@
 
         /*Navigations*/
         header .navs{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 5px 50px;
-        gap: 90px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50px;
-        min-height: 44px;
-        margin-left:10%;
-        }
-
-        /* Trang chủ */
-        header .nav_butt{
-        font-family: 'DVN - Cinzel Decorative';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 15px;
-        color: #FFFFFF;
-        text-decoration: none;
-        padding: 0px 0px;   
-        line-height: 1;
-        }
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 50px;
+            gap: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            min-height: 44px;
+            margin-left:6%;
+            }
+            
+            /* Trang chủ */
+            header .nav_butt{
+            font-family: 'DVN - Cinzel Decorative';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 13px;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 0px 0px;   
+            line-height: 1;
+            }
 
         /* background img */
         body .background-img{
@@ -307,10 +308,11 @@
             </div>
         </div>
         <div class="navs">
-                <a class="nav_butt" href="https://thuclieuhanh.pages.dev/">Trang chủ</a>
-                <a class="nav_butt" href="https://run-flask.onrender.com/tienthien">Tiên thiên</a>
-                <a class="nav_butt" href="https://run-flask.onrender.com/vanchan">Vấn - chẩn</a>
-                <a class="nav_butt" href="https://thuclieuhanh.pages.dev/thucphuong">Thực phương</a>
+                <a class="nav_butt" href="../Homepage.html">Trang chủ</a>
+                <a class="nav_butt" href="tienthien.html">Tiên thiên</a>
+                <a class="nav_butt" href="vanchan.html">Vấn - chẩn</a>
+                <a class="nav_butt" href="../thuc_phuong.html">Thực phương</a>
+                <a class="nav_butt" href="#">Sức khỏe & Đời sống</a>
         </div>
     </header>
 <div class="main-container" style="display: flex;
@@ -369,22 +371,16 @@ const modeGuidedBtn = document.getElementById("mode-guided");
 
 let mode = "user";
 const guidedQuestions = [
-    "Tình trạng này của bạn đã kéo dài bao lâu rồi? Mới bị gần đây (dưới 1 tuần) hay đã bị từ lâu/tái phát nhiều lần?",
-    "Bạn có nhận thấy sự thay đổi nào về môi trường hay thói quen trước khi phát bệnh không? Đi nắng, dầm mưa, ngủ máy lạnh quá lạnh, thức khuya, áp lực công việc, hay vừa ăn đồ sống lạnh/đồ quá cay nóng?",
-    "Bạn có nghĩ đến một nguyên nhân cụ thể nào dẫn đến tình trạng hiện tại không? (Ví dụ: Do thời tiết thay đổi, do ăn uống, hay do căng thẳng cảm xúc...)",
-    "Bạn có đang gặp các dấu hiệu nào khác đi kèm không?",
-    "Nếu có cảm giác đau (bụng, đầu, mình mẩy...), bạn bị đau ở vị trí nào và cảm giác đau ra sao?",
-    "Cơn đau của bạn thay đổi như thế nào theo thời gian và vận động?",
-    "Cảm giác nhiệt độ cơ thể bạn trong phần lớn thời gian gần đây như thế nào?",
-    "Bạn có cảm thấy nóng hoặc lạnh bất thường ở một vùng cụ thể nào không? (Ví dụ: Nóng ở lòng bàn tay chân, hay lạnh vùng bụng, lạnh dọc sống lưng...)",
-    "Thói quen uống nước của bạn hiện tại như thế nào? Không muốn uống nước, hay rất khát và muốn uống nước lạnh? Uống xong có cảm thấy hết khát không?",
-    "Tình trạng tiết mồ hôi của bạn gần đây như thế nào?",
-    "Bạn cảm thấy giọng nói và hơi thở của mình hiện tại như thế nào?",
-    "Trạng thái tinh thần và năng lượng của bạn gần đây ra sao?",
-    "Hãy quan sát nước tiểu và phân của bạn so với bình thường về màu sắc, tính chất và lượng?",
-    "Bạn có gặp khó khăn trong quá trình đi đại tiện hoặc tiểu tiện không?",
-    "Đặc điểm màu sắc, tính chất và lượng của các chất tiết khác? (nếu có như đờm, nước mũi...)",
-    "Hãy quan sát lưỡi của mình vào buổi sáng sáng sớm sau khi vệ sinh răng miệng và trước khi ăn: màu sắc, lớp rêu lưỡi, các đường nứt lưỡi…"
+    "Hiện tại bạn khó chịu nhất ở đâu? (đau, mệt, mất ngủ, tiêu hóa…)",
+    "Bạn thường sợ lạnh hay sợ nóng?",
+    "Có khát nước, miệng khô, nóng trong không?",
+    "Ăn uống có ngon không? Có đầy bụng, khó tiêu không?",
+    "Bạn đi tiêu lỏng, bình thường hay táo bón?",
+    "Nước tiểu trong hay vàng đậm, nhiều hay ít?",
+    "Bạn ngủ có ngon không, có hay tỉnh giấc không?",
+    "Bạn có hay mệt, thiếu sức không?",
+    "Gần đây bạn căng thẳng, lo âu hay dễ cáu gắt không?",
+    "Có đổ mồ hôi bất thường, lạnh tay chân, đau lưng, ù tai không?"
 ];
 let questionIndex = 0;
 let onboarding = false;
@@ -439,11 +435,9 @@ function askNextQuestion() {
     } else {
         onboarding = false;
         input.placeholder = "Bạn có thể nhập câu hỏi phụ hoặc thử lại...";
-        const summary = guidedQuestions.map((q, idx) => 
-            `${q}\n→ ${onboardingAnswers[idx] || "(không trả lời)"}`
-        ).join("\n\n");
-
-        sendToServer(`Dữ liệu vấn chẩn:\n\n${summary}`);
+        const summary = guidedQuestions.map((q, idx) => `(Câu ${idx + 1}) ${q}\nTrả lời: ${onboardingAnswers[idx] || "(không trả lời)"}`).join("\n\n");
+        addMessage("✓ Đã thu thập đủ 10 câu hỏi. Đang gửi phân tích chi tiết...", "ai");
+        sendToServer(`Tóm tắt cuộc phỏng vấn (10 câu):\n\n${summary}`);
     }
 }
 
