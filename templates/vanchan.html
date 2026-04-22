@@ -443,8 +443,8 @@ function askNextQuestion() {
         onboarding = false;
         input.placeholder = "Bạn có thể nhập câu hỏi phụ hoặc thử lại...";
         const summary = guidedQuestions.map((q, idx) => `(Câu ${idx + 1}) ${q}\nTrả lời: ${onboardingAnswers[idx] || "(không trả lời)"}`).join("\n\n");
-        addMessage("✓ Đã thu thập đủ 10 câu hỏi. Đang gửi phân tích chi tiết...", "ai");
-        sendToServer(`Tóm tắt cuộc phỏng vấn (10 câu):\n\n${summary}`);
+        addMessage("✓ Đã thu thập đủ câu hỏi. Đang gửi phân tích chi tiết...", "ai");
+        sendToServer(`Tóm tắt cuộc phỏng vấn:\n\n${summary}`);
     }
 }
 
